@@ -94,11 +94,12 @@ export class AuthService {
     const token = this.jwtService.sign(payload);
     return token;
   }
-  // async findOne(id: string) {
-  //   const user = await this.userModel.findById(id);
 
-  //   return user;
-  // }
+  async findOne(id: string) {
+    const user = await this.userModel.findById(id);
+
+    return user;
+  }
 
   // update(id: number, updateAuthDto: UpdateAuthDto) {
   //   return `This action updates a #${id} auth`;

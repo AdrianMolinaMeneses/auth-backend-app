@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Request,
+  Query,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto, LoginDto, RegisterUserDto, UpdateAuthDto } from './dto';
@@ -26,6 +27,7 @@ export class AuthController {
 
   @Post('login')
   login(@Body() loginDto: LoginDto) {
+    console.log(loginDto);
     return this.authService.login(loginDto);
   }
 
@@ -46,6 +48,7 @@ export class AuthController {
   @Get('check-token')
   checkToken(@Request() req: Request): LoginResponse {
     const user = req['user'] as User;
+    console.log('LLEGA A VERIFICAR ESTADO');
 
     return {
       user,
@@ -53,10 +56,12 @@ export class AuthController {
     };
   }
 
-  // @Get(':id')
-  // findOne(@Param('id') id: string) {
-  //   return this.authService.findOne(id);
-  // }
+  @Get(':id')
+  findOne(@Param('id') id: string, @Query('age') age: number) {
+    console.log(`el id de usuario que llega es ${id}`);
+    console.log(`la edad que llega es ${age}`);
+    return this.authService.findOne(id);
+  }
 
   // @Patch(':id')
   // update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
