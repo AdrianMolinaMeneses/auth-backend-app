@@ -20,7 +20,7 @@ import { ConfigModule } from '@nestjs/config';
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SEED,
-      signOptions: { expiresIn: '1m' },
+      signOptions: { expiresIn: '24h' },
     }),
   ],
 })
